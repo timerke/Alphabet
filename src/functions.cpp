@@ -47,6 +47,46 @@ char determine_way(int argc, char* argv[])
 }
 
 /**
+ * Функция разбивает строку на слова.
+ * @param line - строка со словами;
+ * @param words - вектор, в который будут записаны слова из строки.
+ */
+void dismember_line(std::string* line, std::vector<std::string>* words)
+{
+	// Знаки пунктуации, разбивающие строку на слова
+	const char punctuation[] = " \t.,:;-?!'\"()";
+	std::size_t begin_pos = line->find_first_not_of(punctuation);
+	std::size_t end_pos = line->find_first_of(punctuation, begin_pos + 1);
+	while (begin_pos != std::string::npos && end_pos != std::string::npos)
+	{
+		// Добавляем слово в вектор
+		words->push_back(line->substr(begin_pos, end_pos - begin_pos));
+		begin_pos = line->find_first_not_of(punctuation, end_pos + 1);
+		end_pos = line->find_first_of(punctuation, begin_pos + 1);
+	}
+	if (begin_pos != std::string::npos && end_pos == std::string::npos)
+	{
+		// Добавляем слово в конце строки в вектор
+		words->push_back(line->substr(begin_pos));
+	}
+}
+
+/**
+ * Функция разбивает входной текст на слова.
+ * @param text - текст, представляющий собой вектор из строк;
+ * @param words - вектор, в который будут записаны слова из текста.
+ */
+void dismember_text(std::vector<std::string>* text,
+	std::vector<std::string>* words)
+{
+	for (std::vector<std::string>::iterator line = text->begin();
+		line < text->end(); line++)
+	{
+		dismember_line(&(*line), words);
+	}
+}
+
+/**
  * Функция выводит сообщение при завершении программы.
  */
 void finish()

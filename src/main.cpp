@@ -37,6 +37,10 @@ int main(int argc, char* argv[])
 		read_console(argc, argv, &text);
 	}
 
+	// Получаем вектор со словами из текста
+	std::vector<std::string> words;
+	dismember_text(&text, &words);
+
 	// Выход из приложения
 	finish();
 	return 0;
