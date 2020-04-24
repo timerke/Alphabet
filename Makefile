@@ -5,6 +5,9 @@ all: bin/alphabet bin/test
 clean:
 	rm -rf bin/alphabet bin/test *.o
 
+test:
+	./bin/test
+
 build/test/test.o: test/test.cpp
 	g++ -std=c++17 -Wall -Werror -c -o build/test/test.o test/test.cpp
 
