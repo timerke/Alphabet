@@ -41,6 +41,9 @@ int main(int argc, char* argv[])
 	std::vector<std::string> words;
 	dismember_text(&text, &words);
 
+	// Сортируем вектор со словами по алфавиту
+	sort(&words);
+
 	// Выход из приложения
 	finish();
 	return 0;

@@ -162,3 +162,24 @@ bool read_file(int argc, char* argv[], std::vector<std::string>* text)
 	in.close(); // закрываем файл
 	return true;
 }
+
+/**
+ * Функция сортирует вектор из слов по алфавиту. В этой функции
+ * используется пузырьковый метод сортировки (метод простым обменом).
+ * @param words - вектор со словами.
+ */
+void sort(std::vector<std::string>* words)
+{
+	std::vector<std::string>::iterator first = words->begin();
+	std::vector<std::string>::iterator last = words->end();
+	while (first < --last)
+	{
+		for (std::vector<std::string>::iterator i = first; i < last; ++i)
+		{
+			if (*(i + 1) < *i)
+			{
+				std::iter_swap(i, i + 1);
+			}
+		}
+	}
+}
