@@ -95,6 +95,19 @@ void finish()
 }
 
 /**
+ * Функция выводит на экран по одному слову на строке из массива слов.
+ * @param words - вектор со словами.
+ */
+void print_words(std::vector<std::string>* words)
+{
+	for (std::vector<std::string>::iterator word = words->begin();
+		word < words->end(); word++)
+	{
+		std::cout << "\t" << *word << "\n";
+	}
+}
+
+/**
  * Функция получает текст через консольный ввод.
  * @param argc - количество параметров, передаваемых в командной строке;
  * @param argv - массив из строк-параметров командной строки;
