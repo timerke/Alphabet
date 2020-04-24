@@ -83,3 +83,42 @@ void read_console(int argc, char* argv[], std::vector<std::string>* text)
 		}
 	}
 }
+
+/**
+ * Функция получает текст через текстовый файл.
+ * @param argc - количество параметров, передаваемых в командной строке;
+ * @param argv - массив из строк-параметров командной строки;
+ * @param text - вектор, в который будут записаны строки входного текста.
+ * @return true, если текстовый файл был прочтен, иначе false.
+ */
+bool read_file(int argc, char* argv[], std::vector<std::string>* text)
+{
+	std::string file_path; // путь к файлу
+	if (argc > 2)
+	{
+		// Через командную строку передается имя файла
+		file_path = argv[2];
+	}
+	else
+	{
+		// Через командную строку не передается имя файла
+		std::cout << "Введите путь к текстовому файлу: ";
+		std::getline(std::cin, file_path);
+	}
+	// Открываем файл для чтения
+	std::ifstream in(file_path.data(), std::ifstream::in);
+	if (!in.is_open())
+	{
+		// Если файл не открыт
+		std::cout << "Ошибка. Файл " << file_path << " не открыт.\n";
+		return false;
+	}
+	// Если файл открыт для чтения
+	std::string line; // параметр для чтения строки
+	while (std::getline(in, line))
+	{
+		text->push_back(line);
+	}
+	in.close(); // закрываем файл
+	return true;
+}

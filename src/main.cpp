@@ -25,6 +25,11 @@ int main(int argc, char* argv[])
 	else if (response == '1')
 	{
 		// Входной текст будет передан через текстовый файл
+		if (!read_file(argc, argv, &text))
+		{
+			finish();
+			return 0;
+		}
 	}
 	else if (response == '2')
 	{
